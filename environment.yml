@@ -14,7 +14,7 @@ channels:
   - defaults
 dependencies:
   - cudatoolkit
-  - tensorflow-gpu==1.13
+  - tensorflow-gpu=1.14.0
   - torchvision
   - pydicom
   - tensorboard=1.14.0

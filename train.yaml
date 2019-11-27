@@ -3,7 +3,7 @@ kind: Job # Deployment will automatically restart when killed. Use Pod if not ne
 metadata:
   labels:
     k8s-app: research
-  generateName: xyang-train-stack # replace <your_name> with something that identifies you
+  generateName: xyang-train-style # replace <your_name> with something that identifies you
   namespace: ecewcsng
 spec:
   template:
@@ -17,17 +17,17 @@ spec:
         image: gitlab-registry.nautilus.optiputer.net/vamsirk/research-containers # This is a working CUDA Docker
         imagePullPolicy: Always
         # replace <login-name> with your login name and <dir-to-scripts> to the pwd of the scripts you are running
-        workingDir: /ceph/xyang/Text2image/code/text-to-image
+        workingDir: /ceph/xyang/Text2image/code/stylegan
         command: ["bash","train.sh"] # replace this with your own job execution scripts
         resources:
           requests:
             memory: "48Gi"
             cpu: "8"
-            nvidia.com/gpu: 2
+            nvidia.com/gpu: 4
           limits:
             memory: "60Gi"
             cpu: "8"
-            nvidia.com/gpu: 2 # requesting X GPU
+            nvidia.com/gpu: 4 # requesting X GPU
         volumeMounts:
         - mountPath: /dev/shm
           name: dshm
