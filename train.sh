@@ -2,5 +2,5 @@
 cd /ceph/xyang/Text2image/code/stylegan
 nvidia-smi
 source activate
-pip install tensorflow-gpu==1.12.0
+pip install tensorflow-gpu==1.13.1
 python train.py
