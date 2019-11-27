@@ -1,0 +1,59 @@
+apiVersion: batch/v1
+kind: Job # Deployment will automatically restart when killed. Use Pod if not needed
+metadata:
+  labels:
+    k8s-app: research
+  generateName: xyang-train-stack # replace <your_name> with something that identifies you
+  namespace: ecewcsng
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: research
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: research
+        image: gitlab-registry.nautilus.optiputer.net/vamsirk/research-containers # This is a working CUDA Docker
+        imagePullPolicy: Always
+        # replace <login-name> with your login name and <dir-to-scripts> to the pwd of the scripts you are running
+        workingDir: /ceph/xyang/Text2image/code/text-to-image
+        command: ["bash","train.sh"] # replace this with your own job execution scripts
+        resources:
+          requests:
+            memory: "48Gi"
+            cpu: "8"
+            nvidia.com/gpu: 2
+          limits:
+            memory: "60Gi"
+            cpu: "8"
+            nvidia.com/gpu: 2 # requesting X GPU
+        volumeMounts:
+        - mountPath: /dev/shm
+          name: dshm
+        - mountPath: /ceph
+          name: ceph
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      - name: ceph
+        flexVolume:
+          driver: ceph.rook.io/rook
+          fsType: ceph
+          options:
+            clusterNamespace: rook
+            fsName: nautilusfs
+            path: /ecewcsng
+            mountUser: ecewcsng
+            mountSecret: ceph-fs-secret
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: gpu-type
+                operator: In # Use NotIn for other types
+                values:
+                - 1080Ti
+
