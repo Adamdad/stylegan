@@ -21,7 +21,6 @@ dependencies:
   - opencv
   - matplotlib
   - pillow
-  - pickle
   - requests
   - pathlib
   - scipy
