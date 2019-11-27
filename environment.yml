@@ -14,15 +14,14 @@ channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
   - defaults
 dependencies:
-  - python=3.6
+  - python=3.7
   - cudatoolkit
   - tensorflow-gpu=1.14.0
   - tensorboard=1.14.0
   - tqdm
   - pillow
-  - requests
+  - requests=2.21.0
   - pathlib
   - scipy
   - numpy
-  - scikit-learn
   - hashlib
