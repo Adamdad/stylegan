@@ -15,11 +15,17 @@ channels:
 dependencies:
   - cudatoolkit
   - tensorflow-gpu=1.14.0
-  - torchvision
-  - pydicom
   - tensorboard=1.14.0
   - tqdm
-  - pandas
   - opencv
   - matplotlib
-
+  - pillow
+  - pickle
+  - requests
+  - pathlib
+  - scipy
+  - numpy
+  - sklearn
+  - hashlib
+  - six
+  - pickle
