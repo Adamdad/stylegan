@@ -6,6 +6,7 @@ channels:
   - conda-forge
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
   - soumith
+  - hargup/label/pypi
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
@@ -25,7 +26,7 @@ dependencies:
   - pathlib
   - scipy
   - numpy
-  - sklearn
+  - scikit-learn
   - hashlib
   - six
-  - pickle
+  - pickle5
