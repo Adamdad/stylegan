@@ -29,4 +29,3 @@ dependencies:
   - scikit-learn
   - hashlib
   - six
-  - pickle5
